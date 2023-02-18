@@ -1,14 +1,14 @@
 
-public class DoublyLinkedList <E> {
+public class DoublyLinkedList<E> {
 
     private Node<E> head;
     private Node<E> tail;
     private int size;
 
     public DoublyLinkedList() {
-        this.size=0;
-        this.head=null;
-        this.tail=null;
+        this.size = 0;
+        this.head = null;
+        this.tail = null;
     }
 
     public int getSize() {
@@ -16,17 +16,21 @@ public class DoublyLinkedList <E> {
     }
 
     public boolean isEmpty() {
-        return size==0;
+        return size == 0;
     }
 
     public E getFirstElement() {
-        if (isEmpty()) return null;
-        else return head.getValue();
+        if (isEmpty())
+            return null;
+        else
+            return head.getValue();
     }
 
     public E getLastElement() {
-        if (isEmpty()) return null;
-        else return tail.getValue();
+        if (isEmpty())
+            return null;
+        else
+            return tail.getValue();
     }
 
     public void addFirst(E e) {
@@ -55,22 +59,22 @@ public class DoublyLinkedList <E> {
         size++;
     }
 
-    public void insert(E e,int index) {
-        if (index>size) {
+    public void insert(E e, int index) {
+        if (index > size) {
             throw new IndexOutOfBoundsException();
         } else {
             Node<E> newElement = new Node<>(e);
-            if (index==0 ) {
+            if (index == 0) {
                 addFirst(e);
-            }else if (index==size){
+            } else if (index == size) {
                 addLast(e);
             } else {
-                if (index<=size/2) {
+                if (index <= size / 2) {
                     Node<E> pointer = head;
                     Node<E> pointer2 = null;
                     for (int i = 0; i < index; i++) {
-                        pointer2=pointer;
-                        pointer=pointer.getNext();
+                        pointer2 = pointer;
+                        pointer = pointer.getNext();
                     }
                     pointer2.setNext(newElement);
                     newElement.setPrevious(pointer2);
@@ -79,9 +83,9 @@ public class DoublyLinkedList <E> {
                 } else {
                     Node<E> pointer = tail;
                     Node<E> pointer2 = null;
-                    for (int i = 0; i < size-index; i++) {
-                        pointer2=pointer;
-                        pointer=pointer.getPrevious();
+                    for (int i = 0; i < size - index; i++) {
+                        pointer2 = pointer;
+                        pointer = pointer.getPrevious();
                     }
                     pointer.setNext(newElement);
                     newElement.setPrevious(pointer);
@@ -95,28 +99,28 @@ public class DoublyLinkedList <E> {
 
     }
 
-    public void update (int index,E e) {
-        if (index>=size) {
+    public void update(int index, E e) {
+        if (index >= size) {
             throw new IndexOutOfBoundsException();
         } else {
             Node<E> updateElement = new Node<>(e);
-            if (index==0 ) {
+            if (index == 0) {
                 Node<E> tempNode = head.getNext();
                 head = updateElement;
                 updateElement.setNext(tempNode);
                 tempNode.setPrevious(updateElement);
-            }else if (index==size-1){
+            } else if (index == size - 1) {
                 Node<E> tempNode = tail.getPrevious();
                 tempNode.setNext(updateElement);
                 updateElement.setPrevious(tempNode);
                 tail = updateElement;
             } else {
-                if (index<=size/2) {
+                if (index <= size / 2) {
                     Node<E> pointer = head;
                     Node<E> pointer2 = null;
                     for (int i = 0; i < index; i++) {
-                        pointer2=pointer;
-                        pointer=pointer.getNext();
+                        pointer2 = pointer;
+                        pointer = pointer.getNext();
                     }
                     pointer = pointer.getNext();
                     pointer2.setNext(updateElement);
@@ -126,9 +130,9 @@ public class DoublyLinkedList <E> {
                 } else {
                     Node<E> pointer = tail;
                     Node<E> pointer2 = null;
-                    for (int i = 0; i < size-index-1; i++) {
-                        pointer2=pointer;
-                        pointer=pointer.getPrevious();
+                    for (int i = 0; i < size - index - 1; i++) {
+                        pointer2 = pointer;
+                        pointer = pointer.getPrevious();
                     }
                     pointer = pointer.getPrevious();
                     pointer.setNext(updateElement);
@@ -141,24 +145,24 @@ public class DoublyLinkedList <E> {
         }
     }
 
-    public void delete (int index) {
-        if (index>=size) {
+    public void delete(int index) {
+        if (index >= size) {
             throw new IndexOutOfBoundsException();
         } else {
-            if (index==0 ) {
+            if (index == 0) {
                 head.getNext().setPrevious(null);
                 head = head.getNext();
-            }else if (index==size-1){
+            } else if (index == size - 1) {
                 Node<E> tempNode = tail.getPrevious();
-                tail=tempNode;
+                tail = tempNode;
                 tempNode.setNext(null);
             } else {
-                if (index<=size/2) {
+                if (index <= size / 2) {
                     Node<E> pointer = head;
                     Node<E> pointer2 = null;
                     for (int i = 0; i < index; i++) {
-                        pointer2=pointer;
-                        pointer=pointer.getNext();
+                        pointer2 = pointer;
+                        pointer = pointer.getNext();
                     }
                     pointer = pointer.getNext();
                     pointer2.setNext(pointer);
@@ -167,8 +171,8 @@ public class DoublyLinkedList <E> {
                     Node<E> pointer = tail;
                     Node<E> pointer2 = null;
                     for (int i = 0; i < size - index - 1; i++) {
-                        pointer2=pointer;
-                        pointer=pointer.getPrevious();
+                        pointer2 = pointer;
+                        pointer = pointer.getPrevious();
                     }
                     pointer = pointer.getPrevious();
                     pointer2.setPrevious(pointer);
@@ -187,7 +191,7 @@ public class DoublyLinkedList <E> {
             do {
                 System.out.println(pointer.getValue());
                 pointer = pointer.getNext();
-            } while (pointer!=null);
+            } while (pointer != null);
         }
     }
 
